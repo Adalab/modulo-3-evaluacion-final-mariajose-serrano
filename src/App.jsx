@@ -1,43 +1,21 @@
+import { useEffect, useState } from "react";
 import "./styles/App.scss";
 
 function App() {
-  return (
-    <div>
-      {/* CABECERA */}
-      <header className="header">
-        <h1 className="title">Listado de personajes</h1>
-      </header>
+  // lista personajes
+  const [characters, setCharacters] = useState([]);
 
-      {}
-      <main className="main">
-        <form className="form">
-          {/* INPUT 1 → BUSCAR POR PERSONAJE */}
-          <label htmlFor="filter" className="label">
-            Busca por personaje:
-          </label>
-          <input
-            type="text"
-            name="filter"
-            id="filter"
-            className="input"
-            placeholder="Ej.: Harry, Hermione..."
-          />
+  const [search, setSearch] = useState("");
 
-          {/* INPUT 2 → SELECCIONAR CASA */}
-          <label htmlFor="house" className="label">
-            Selecciona la casa:
-          </label>
-          <select id="house" name="house" className="input">
-            <option value="">Todas</option>
-            <option value="Gryffindor">Gryffindor</option>
-            <option value="Slytherin">Slytherin</option>
-            <option value="Ravenclaw">Ravenclaw</option>
-            <option value="Hufflepuff">Hufflepuff</option>
-          </select>
-        </form>
-      </main>
-    </div>
-  );
-}
+  const [house, setHouse] = useState("");
 
-export default App;
+  // Llamada a la API al cargar la página
+  useEffect(() => {
+    fetch("https://hp-api.onrender.com/api/characters")
+      .then((response) => response.json())
+      .then((data) => {
+        setCharacters(data);
+      });
+  }, []);
+
+  
