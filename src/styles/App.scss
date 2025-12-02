@@ -6,7 +6,7 @@ body {
   color: #ffffff;
 }
 
-/* Logo centrado */
+
 .header {
   text-align: center;
   padding-top: 20px;
@@ -16,24 +16,41 @@ body {
   width: 200px;      
   max-width: 90%;
   display: block;
-  margin: 0 auto;    /* centrado horizontal */
+  margin: 0 auto;    
 }
 
 
 .title {
-  line-height:4rem;
-  padding-inline: 2rem;
+  font-family: "Cinzel Decorative", serif;
+  font-size: 32px;
+  color: #e8d8ac; /* Dorado Hogwarts */
+  margin: 0;
 }
+
 
 .main {
-  padding: 2 rem
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-input {
-  padding: 0,5rem;
-  background-color: transparent;
+/* FORMULARIO */
+.label {
+  display: block;
+  font-weight: bold;
+  color: #e8d8ac;
+  margin-bottom: 6px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #caa748; 
+  background-color: #e8d8ac; 
   color: #333;
-  border-color: #FFD700
-
+  border-radius: 4px;
+  font-size: 16px;
+  margin-bottom: 20px;
 }
+
 
