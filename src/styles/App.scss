@@ -1,27 +1,39 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-:root {
-  font-family: "Roboto", Arial, Helvetica, sans-serif;
-}
-
+/* Fuente general */
 body {
-  background-color: #555;
-  color: #fff;
+  background-color: #6b6b6b;
+  margin: 0;
+  font-family: "Lora", serif;
+  color: #ffffff;
 }
 
+/* Logo centrado */
 .header {
-  border-bottom: solid 5px darkcyan;
+  text-align: center;
+  padding-top: 20px;
+}
 
-  .title {
-    line-height: 4rem;
-    padding-inline: 2rem;
-  }
+.logo {
+  width: 200px;      
+  max-width: 90%;
+  display: block;
+  margin: 0 auto;    /* centrado horizontal */
+}
+
+
+.title {
+  line-height:4rem;
+  padding-inline: 2rem;
 }
 
 .main {
-  padding: 2rem;
+  padding: 2 rem
 }
+
+input {
+  padding: 0,5rem;
+  background-color: transparent;
+  color: #333;
+  border-color: #FFD700
+
+}
+
