@@ -18,4 +18,11 @@ function App() {
       });
   }, []);
 
+  // Personajes
+  const filteredCharacters = characters
+    // filtro por nombre
+    .filter((char) => char.name.toLowerCase().includes(search.toLowerCase()))
+    // filtro por casa (si no hay casa seleccionada, mostramos todos)
+    .filter((char) => (house === "" ? true : char.house === house));
+
   
