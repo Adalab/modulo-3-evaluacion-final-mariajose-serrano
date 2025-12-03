@@ -18,7 +18,7 @@ function App() {
       .then((data) => setCharacters(data));
   }, []);
 
-  // Filtros
+  // Filtros da igual mayusculas que minus.
   const filteredCharacters = characters.filter((character) => {
     const matchesName = character.name
       .toLowerCase()
@@ -45,7 +45,7 @@ function App() {
             </header>
 
             <main className="app-container">
-              {/*--- INPUT buscar por nombre ---*/}
+              {/*INPUT buscar por nombre*/}
               <form onSubmit={(e) => e.preventDefault()}>
                 <label htmlFor="search" className="label">
                   Busca por personaje:
@@ -60,7 +60,7 @@ function App() {
                 />
               </form>
 
-              {/*--- SELECT filtrar por casa ---*/}
+              {/*SELECT filtrar por casa*/}
               <label htmlFor="house" className="label">
                 Selecciona la casa:
               </label>
@@ -77,7 +77,7 @@ function App() {
                 <option value="Slytherin">Slytherin</option>
               </select>
 
-              {/*--- LISTADO DE PERSONAJES ---*/}
+              {/*LISTADO DE PERSONAJES*/}
               <CharacterList characters={filteredCharacters} />
             </main>
           </div>
