@@ -4,7 +4,7 @@ function CharacterList({ characters }) {
   return (
     <section className="characters-grid">
       {characters.map((character, index) => (
-        <CharacterCard key={index} character={character} />
+        <CharacterCard key={index} character={character} id={index} />
       ))}
     </section>
   );
