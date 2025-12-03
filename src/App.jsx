@@ -65,3 +65,31 @@ function App() {
             <option value="Hufflepuff">Hufflepuff</option>
           </select>
         </form>
+
+        {/* Listado personajes */}
+        <section className="characters-grid">
+          {filteredCharacters.map((character, index) => {
+            const placeholder =
+              "https://placehold.co/210x295/ffffff/666666/?format=svg&text=Sin+imagen";
+
+            return (
+              <article key={index} className="character-card">
+                <img
+                  className="character-img"
+                  src={character.image || placeholder}
+                  alt={character.name}
+                />
+                <div className="character-info">
+                  <h3>{character.name}</h3>
+                  <p>{character.species}</p>
+                </div>
+              </article>
+            );
+          })}
+        </section>
+      </main>
+    </div>
+  );
+}
+
+export default App;
