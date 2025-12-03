@@ -1,92 +1,74 @@
 import { useEffect, useState } from "react";
 import "./styles/App.scss";
+import CharacterList from "./components/characterList";
 
 function App() {
-  // lista personajes
+  // Variables de estado
   const [characters, setCharacters] = useState([]);
-
   const [search, setSearch] = useState("");
-
   const [house, setHouse] = useState("");
 
-  // Llamada a la API al cargar la página
+  //  Fetch
   useEffect(() => {
     fetch("https://hp-api.onrender.com/api/characters")
-      .then((response) => response.json())
-      .then((data) => {
-        setCharacters(data);
-      });
+      .then((res) => res.json())
+      .then((data) => setCharacters(data));
   }, []);
 
-  // Personajes
-  const filteredCharacters = characters
-    // filtro por nombre
-    .filter((char) => char.name.toLowerCase().includes(search.toLowerCase()))
-    // filtro por casa (si no hay casa seleccionada, mostramos todos)
-    .filter((char) => (house === "" ? true : char.house === house));
+  // Filtros
+  const filteredCharacters = characters.filter((character) => {
+    const matchesName = character.name
+      .toLowerCase()
+      .includes(search.toLowerCase());
+
+    const matchesHouse = house === "" || character.house === house;
+
+    return matchesName && matchesHouse;
+  });
 
   return (
     <div>
       <header className="header">
-        <h1 className="title">Listado de personajes</h1>
+        <img
+          className="logo"
+          src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Harry_Potter_Golden_logo.png"
+          alt=""
+        />
       </header>
 
-      <main className="main">
-        <form className="form">
-          {/* Input 1: filtro por nombre */}
-          <label htmlFor="filter" className="label">
-            Busca por personaje:
-          </label>
-          <input
-            type="text"
-            name="filter"
-            id="filter"
-            className="input"
-            placeholder="Escribe para filtrar"
-            value={search}
-            onChange={(event) => setSearch(event.target.value)}
-          />
+      <main className="app-container">
+        {/*--- INPUT buscar por nombre ---*/}
+        <label htmlFor="search" className="label">
+          Busca por personaje:
+        </label>
+        <input
+          id="search"
+          type="text"
+          className="input"
+          placeholder="Ej.: Harry, Hermione..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
 
-          {/* Input2: filtro por casa */}
-          <label htmlFor="house" className="label">
-            Selecciona la casa:
-          </label>
-          <select
-            id="house"
-            name="house"
-            className="input"
-            value={house}
-            onChange={(event) => setHouse(event.target.value)}
-          >
-            <option value="">Todas</option>
-            <option value="Gryffindor">Gryffindor</option>
-            <option value="Slytherin">Slytherin</option>
-            <option value="Ravenclaw">Ravenclaw</option>
-            <option value="Hufflepuff">Hufflepuff</option>
-          </select>
-        </form>
+        {/*--- SELECT filtrar por casa ---*/}
+        <label htmlFor="house" className="label">
+          Selecciona la casa:
+        </label>
+        <select
+          id="house"
+          className="input"
+          value={house}
+          onChange={(e) => setHouse(e.target.value)}
+        >
+          <option value="">Todas</option>
+          <option value="Gryffindor">Gryffindor</option>
+          <option value="Hufflepuff">Hufflepuff</option>
+          <option value="Ravenclaw">Ravenclaw</option>
+          <option value="Slytherin">Slytherin</option>
+        </select>
 
-        {/* Listado personajes */}
-        <section className="characters-grid">
-          {filteredCharacters.map((character, index) => {
-            const placeholder =
-              "https://placehold.co/210x295/ffffff/666666/?format=svg&text=Sin+imagen";
-
-            return (
-              <article key={index} className="character-card">
-                <img
-                  className="character-img"
-                  src={character.image || placeholder}
-                  alt={character.name}
-                />
-                <div className="character-info">
-                  <h3>{character.name}</h3>
-                  <p>{character.species}</p>
-                </div>
-              </article>
-            );
-          })}
-        </section>
+        {/*--- LISTADO DE PERSONAJES ---*/}
+        <CharacterList characters={filteredCharacters} />
       </main>
     </div>
   );
