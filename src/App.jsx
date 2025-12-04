@@ -4,6 +4,7 @@ import "./styles/App.scss";
 
 import CharacterList from "./components/CharacterList";
 import CharacterDetail from "./components/characterDetail";
+import FilterName from "./components/filterName";
 
 function App() {
   // Variables de estado
@@ -45,21 +46,7 @@ function App() {
             </header>
 
             <main className="app-container">
-              {/*INPUT buscar por nombre*/}
-              <form onSubmit={(e) => e.preventDefault()}>
-                <label htmlFor="search" className="label">
-                  Busca por personaje:
-                </label>
-                <input
-                  id="search"
-                  type="text"
-                  className="input"
-                  placeholder="Ej.: Harry, Hermione..."
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                />
-              </form>
-
+              <FilterName search={search} setSearch={setSearch} />
               {/*SELECT filtrar por casa*/}
               <label htmlFor="house" className="label">
                 Selecciona la casa:

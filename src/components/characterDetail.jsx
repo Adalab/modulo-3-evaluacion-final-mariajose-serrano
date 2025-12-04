@@ -33,7 +33,12 @@ function CharacterDetail({ characters }) {
         <strong>Casa:</strong> {character.house || "Desconocida"}
       </p>
       <p>
-        <strong>Estado:</strong> {character.alive ? "Vivo" : "Muerto"}
+        <strong>Estado:</strong>{" "}
+        {character.alive ? (
+          <span className="alive">🟢 Vivo</span>
+        ) : (
+          <span className="dead">🔴 Muerto</span>
+        )}
       </p>
       <p>
         <strong>Género:</strong> {character.gender}
