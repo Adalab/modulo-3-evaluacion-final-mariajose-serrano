@@ -6,6 +6,7 @@ import CharacterList from "./components/characterList";
 import CharacterDetail from "./components/characterDetail";
 import FilterName from "./components/filterName";
 import FilterHouse from "./components/filterHouse";
+import logoHP from "./images/harrypotter.png";
 
 function App() {
   // Variables de estado
@@ -20,7 +21,7 @@ function App() {
       .then((data) => setCharacters(data));
   }, []);
 
-  // Filtros (no distingue mayúsc/minúsc.)
+  // Filtros
   const filteredCharacters = characters.filter((character) => {
     const matchesName = character.name
       .toLowerCase()
@@ -38,18 +39,17 @@ function App() {
         path="/"
         element={
           <div>
-            <header className="header">
-              <img
-                className="logo"
-                src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Harry_Potter_Golden_logo.png"
-                alt=""
-              />
+            <header className="logo">
+              <img className="logo" src={logoHP} alt="" />
+              <img />
             </header>
 
             <main className="app-container">
-              {/* Filtros */}
-              <FilterName search={search} setSearch={setSearch} />
-              <FilterHouse house={house} setHouse={setHouse} />
+              {/* ✔️ AQUI VAN LOS FILTROS DENTRO DEL CONTENEDOR */}
+              <div className="filters-container">
+                <FilterName search={search} setSearch={setSearch} />
+                <FilterHouse house={house} setHouse={setHouse} />
+              </div>
 
               {/* LISTADO DE PERSONAJES */}
               <CharacterList characters={filteredCharacters} />
