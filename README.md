@@ -35,11 +35,11 @@ SCSS para los estilos
 
  Estructura de componentes
 App.jsx
- ├── FilterName
- ├── FilterHouse
- ├── CharacterList
- │      └── CharacterCard
- └── CharacterDetail
+ FilterName
+ FilterHouse
+ CharacterList
+ CharacterCard
+ CharacterDetail
 
 🚀 Cómo ejecutar el proyecto
 npm install
