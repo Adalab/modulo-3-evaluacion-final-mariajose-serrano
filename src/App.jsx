@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./styles/App.scss";
 
-import CharacterList from "./components/CharacterList";
+import CharacterList from "./components/characterList";
 import CharacterDetail from "./components/characterDetail";
 import FilterName from "./components/filterName";
+import FilterHouse from "./components/filterHouse";
 
 function App() {
   // Variables de estado
@@ -19,7 +20,7 @@ function App() {
       .then((data) => setCharacters(data));
   }, []);
 
-  // Filtros da igual mayusculas que minus.
+  // Filtros (no distingue mayúsc/minúsc.)
   const filteredCharacters = characters.filter((character) => {
     const matchesName = character.name
       .toLowerCase()
@@ -46,32 +47,18 @@ function App() {
             </header>
 
             <main className="app-container">
+              {/* Filtros */}
               <FilterName search={search} setSearch={setSearch} />
-              {/*SELECT filtrar por casa*/}
-              <label htmlFor="house" className="label">
-                Selecciona la casa:
-              </label>
-              <select
-                id="house"
-                className="input"
-                value={house}
-                onChange={(e) => setHouse(e.target.value)}
-              >
-                <option value="">Todas</option>
-                <option value="Gryffindor">Gryffindor</option>
-                <option value="Hufflepuff">Hufflepuff</option>
-                <option value="Ravenclaw">Ravenclaw</option>
-                <option value="Slytherin">Slytherin</option>
-              </select>
+              <FilterHouse house={house} setHouse={setHouse} />
 
-              {/*LISTADO DE PERSONAJES*/}
+              {/* LISTADO DE PERSONAJES */}
               <CharacterList characters={filteredCharacters} />
             </main>
           </div>
         }
       />
 
-      {/*  DETALLE  */}
+      {/* DETALLE */}
       <Route
         path="/character/:id"
         element={<CharacterDetail characters={characters} />}
